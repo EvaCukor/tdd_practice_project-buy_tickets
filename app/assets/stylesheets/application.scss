@@ -1,0 +1,54 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body { padding-bottom: 70px; }
+
+footer { padding-top: 15px;  }
+
+.navbar-default {
+    background-color: #191919;
+    color: #E8E8E8;
+}
+
+.navbar .nav > li > a {
+    color: #E8E8E8;
+}
+
+.navbar .nav > li > a:hover, .navbar .nav > li > a:active {
+    font-size: 16px;
+    color: #E8E8E8;
+}
+
+.navbar a.navbar-brand, .navbar a.navbar-brand:hover {
+    color: #FFFFFF;
+}
+
+#registration_container {
+  width: 30%;  
+  background: rgba(255, 255, 255, 0.275);
+  padding: 20px;
+  margin-top: 90px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-box-shadow: 1px 7px 36px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 7px 36px -1px rgba(0,0,0,0.75);
+  box-shadow: 1px 7px 36px -1px rgba(0,0,0,0.75);
+}
+
+.page-header { margin-top: 75px; }
