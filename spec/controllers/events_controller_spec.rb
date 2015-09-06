@@ -7,4 +7,17 @@ describe EventsController do
       expect(assigns(:categories)).to match_array(Category.all)
     end
   end
+  
+  describe "GET show" do
+    let(:event) { Fabricate(:event) }
+    before do
+      get :show, id: event.id
+    end
+    it "sets the @event variable based on the params data" do
+      expect(assigns(:event)).to eq(event)
+    end
+    it "renders the event show template" do
+      expect(response).to render_template :show
+    end
+  end
 end
