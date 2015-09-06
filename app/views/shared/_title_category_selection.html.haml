@@ -1,0 +1,15 @@
+%div.row
+  %div.col-lg-12
+    %h1.page-header 
+      Events
+      %small.dropdown
+        %button{:class => "btn btn-default dropdown-toggle", :type => "button", "data-toggle" => "dropdown"}
+          Choose the event category
+          %span.caret
+        %ul{:class => "dropdown-menu", "aria-labelledby" => "dropdownMenuDivider"}
+          - @categories.each do |category|
+            %li 
+              = link_to category.name.titleize, category_path(category)
+          %li{:role => "separator", :class => "divider"}
+          %li
+            = link_to "All events", root_path

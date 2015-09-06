@@ -1,10 +1,19 @@
 %div.navbar.navbar-default.navbar-fixed-top
   %div.container
-    %a.navbar-brand{href: '#'} BuyTickets
+    %div.navbar-header
+      %span.navbar-brand BuyTickets
     %ul.nav.navbar-nav
       %li
-        %a{href: "#"} Events
-      %li
-        %a{href: "#"} Shopping Cart
-      %li
-        %a{href: "#"} Logout
+        = link_to 'Events', root_path
+    %ul.nav.navbar-nav.navbar-right
+      - if !current_user
+        %li
+          = link_to 'Login', login_path
+        %li
+          = link_to 'Register', register_path
+      - else
+        %li.navbar-text Hi, #{current_user.name.titleize}!
+        %li
+          %a{href: "#"} My Shopping Cart
+        %li
+          = link_to 'Logout', logout_path

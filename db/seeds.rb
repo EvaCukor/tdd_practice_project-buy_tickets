@@ -1,6 +1,6 @@
-concert = Category.create(name: 'concert')
+concerts = Category.create(name: 'concerts')
 ballet = Category.create(name: 'ballet')
-stand_up_comedy = Category.create(name: 'stand-up comedy show')
+stand_up_comedy = Category.create(name: 'stand-up comedy shows')
 musical_theatre = Category.create(name: 'musical theatre')
 
 Event.create!(name: 'U2 Innocence + Experience Tour 2015',
@@ -9,7 +9,7 @@ Event.create!(name: 'U2 Innocence + Experience Tour 2015',
              venue: 'Ziggo Dome, Amsterdam (NL)',
              description: "The Innocence + Experience Tour is an ongoing worldwide concert tour by rock band U2. Staged in support of the band's 2014 album Songs of Innocence, the tour will visit arenas throughout 2015. It is U2's first time playing arenas since 2005–2006 on their Vertigo Tour. The Innocence + Experience Tour opened on 14 May 2015 in Vancouver, Canada, and will comprise two legs, one featuring concerts in North America from May through July, and a second featuring concerts in Europe from September through November. The group has scheduled 70 concert dates.",
              img_url: 'u2_concert.jpg',
-             category: concert)
+             category: concerts)
              
 Event.create!(name: 'Florence And The Machine',
              date: '21-Sep-2015',
@@ -17,7 +17,7 @@ Event.create!(name: 'Florence And The Machine',
              venue: 'Alexandra Palace, London (GB)',
              description: "How Big How Blue How Beautiful', Florence's third critically acclaimed album was released this week to top the UK album chart, selling more than the rest of the top 5 combined, topping the charts in 24 other countries and the bandare currently on course to have their first Number One album in the USA. Now Florence + the Machine announce their return to the stage with their first full UK tour since March 2012. September will see them embark on a 12 strong string of dates which will take them across the country.",
              img_url: 'florence_concert.jpg',
-             category: concert)
+             category: concerts)
              
 Event.create!(name: 'Swan Lake',
              date: '27-Sep-2016',
@@ -32,7 +32,7 @@ Event.create!(name: 'The Nutcracker',
              time: '20:30',
              venue: 'Teatro Carlo Felice Genova, Genoa (IT)',
              description: "The Nutcracker is a two-act ballet, originally choreographed by Marius Petipa and Lev Ivanov with a score by Pyotr Ilyich Tchaikovsky (op. 71). The libretto is adapted from E.T.A. Hoffmann's story The Nutcracker and the Mouse King. It was given its première at the Mariinsky Theatre in St. Petersburg on Sunday, December 18, 1892, on a double-bill with Tchaikovsky's opera, Iolanta.",
-             img_url: 'nutcracker_ballet',
+             img_url: 'nutcracker_ballet.jpg',
              category: ballet)
              
 Event.create!(name: 'Eddie Izzard',
@@ -50,5 +50,3 @@ Event.create!(name: 'Dirty Dancing',
              description: "It’s the summer of 1963, and 17 year- old Frances ‘Baby’ Houseman is about to learn some major lessons in life as well as a thing or two about dancing.\nOn holiday in New York’s Catskill Mountains with her older sister and parents, ‘Baby’ shows little interest in the resort activities, and instead discovers her own entertainment when she stumbles upon the staff quarters when an all-night dance party is in full swing. Mesmerised by the raunchy dance moves and the pounding rhythms, ‘Baby’ can’t wait to be part of the scene, especially when she catches sight of Johnny Castle the resort dance instructor.\nBaby’s’ life is about to change forever as she is thrown in at the deep end as Johnny’s leading lady both on-stage and off with breathtaking consequences.",
              img_url: 'dirty_dancing_musical.jpg',
              category: musical_theatre)
-             
-#eva = User.create(name: 'Eva Cukor', password: 'password', email: 'cukor@email.com')

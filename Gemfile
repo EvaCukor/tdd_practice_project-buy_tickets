@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.1.4'
+ruby '2.2.1'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap_form'
 gem 'coffee-rails'
 gem 'rails', '4.1.1'

@@ -1,0 +1,17 @@
+%div.container
+  = render 'shared/title_category_selection'
+  %h3= @category.name.titleize
+  - @category.events.each do |event|
+    %div.row
+      %div.col-lg-7
+        = image_tag("/tmp/#{event.img_url}", class: "img-responsive")
+      %div.col-md-5
+        %h3= event.name
+        %h4
+          = event.date.strftime("%d %B %Y") + ', ' + event.time.strftime("%H:%M")
+          %br
+          = event.venue
+        = link_to event_path(event), class: "btn btn-success" do
+          View details
+          %span.glyphicon.glyphicon-chevron-right
+    %br

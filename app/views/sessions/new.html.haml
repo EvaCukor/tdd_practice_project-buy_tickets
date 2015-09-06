@@ -1,12 +1,14 @@
 %div#registration_container.container
+  = render 'shared/messages'
   %h1.text-center Login
   %br
-  %form.form.col-md-12.center-block
-    %div.form-group
-      %input{type: "text", class: "form-control input-lg", placeholder: "Email"}
-    %div.form-group
-      %input{type: "text", class: "form-control input-lg", placeholder: "Password"}
-    %div.form-group
-      %button.btn.btn-primary.btn-lg.btn-block Log in
-      %span.pull-right
-        %a{href: "#"} Register
+  = form_tag '/login', class: "form col-md-12 center-block", method: 'post' do
+    = email_field_tag :email, '', class: "form-control input-lg", placeholder: "Email"
+    %br
+    = password_field_tag :password, '', class: "form-control input-lg", placeholder: "Password"
+    %br
+    %button.btn.btn-primary.btn-lg.btn-block Log in
+    %br
+    %span.pull-right
+      You haven't registered yet?
+      = link_to "Register", register_path

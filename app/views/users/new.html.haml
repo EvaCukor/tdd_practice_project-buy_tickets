@@ -1,14 +1,12 @@
 %div#registration_container.container
   %h1.text-center Registration
   %br
-  %form.form.col-md-12.center-block
-    %div.form-group
-      %input{type: "text", class: "form-control input-lg", placeholder: "Name"}
-    %div.form-group
-      %input{type: "text", class: "form-control input-lg", placeholder: "Email"}
-    %div.form-group
-      %input{type: "text", class: "form-control input-lg", placeholder: "Password"}
-    %div.form-group
-      %button.btn.btn-primary.btn-lg.btn-block Register
-      %span.pull-right
-        %a{href: "#"} Login
+  = bootstrap_form_for @user, html: { class: "form col-md-12 center-block" } do |f|
+    = f.text_field :name, label: "Your name"
+    = f.email_field :email, label: "Email address"
+    = f.password_field :password
+    %button.btn.btn-primary.btn-lg.btn-block Register
+    %br
+    %span.pull-right
+      Already registered?
+      = link_to "Login here", login_path

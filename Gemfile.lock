@@ -188,7 +188,7 @@ DEPENDENCIES
   bcrypt
   better_errors
   binding_of_caller
-  bootstrap-sass
+  bootstrap-sass (~> 3.3.5)
   bootstrap_form
   capybara
   coffee-rails
@@ -208,6 +208,3 @@ DEPENDENCIES
   shoulda-matchers
   thin
   uglifier
-
-BUNDLED WITH
-   1.10.6
