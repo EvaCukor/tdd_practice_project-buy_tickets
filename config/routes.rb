@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: :create
   resources :categories, only: :show
   resources :events, only: :show
+  resources :cart_items, only: [:index, :create, :destroy]
+  
+  post 'update_shopping_cart', to: "cart_items#update_shopping_cart"
 end

@@ -3,8 +3,10 @@ require 'spec_helper'
 describe EventsController do
   describe "GET index" do
     it "sets the @categories variable" do
+      category1 = Fabricate(:category)
+      category2 = Fabricate(:category)
       get :index
-      expect(assigns(:categories)).to match_array(Category.all)
+      expect(assigns(:categories)).to match_array([category1, category2])
     end
   end
   

@@ -14,11 +14,17 @@ describe UsersController do
       it "creates the user" do
         expect(User.count).to eq(1)
       end
-      it "redirects to the login page" do
-        expect(response).to redirect_to login_path
-      end
+      it_behaves_like "require login"
     end
+    
     context "with invalid input" do
+      before {post :create, user: {name: 'Eva Cukor', password: 'password'}}
+      it "doesn't create the user" do
+        expect(User.count).to eq(0)
+      end
+      it "renders the new template" do
+        expect(response).to render_template :new
+      end
     end
   end
 end

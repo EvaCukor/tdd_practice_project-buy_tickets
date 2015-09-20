@@ -7,8 +7,10 @@
       = image_tag("/tmp/#{@event.img_url}", class: "img-responsive")
     %div.col-md-5
       %h4= @event.date.strftime("%d %B %Y") + ', ' + @event.time.strftime("%H:%M")
+      %h4= @event.venue
       %h4= @event.category.name.capitalize.singularize
       %p= @event.description
-      = link_to '#', class: "btn btn-success"  do
-        Book now&nbsp;
-        %span.glyphicon.glyphicon-plus
+      - unless current_user.added_event_to_cart?(@event)
+        = link_to cart_items_path(event_id: @event.id), class: "btn btn-success", method: :post  do
+          Add to cart&nbsp;
+          %span.glyphicon.glyphicon-shopping-cart

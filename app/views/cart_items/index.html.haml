@@ -1,0 +1,57 @@
+%div.container
+  %div.row
+    %div.col-lg-12
+      %h1.page-header Shopping Cart
+  %div.row
+    %div.col-lg-12
+      - if CartItem.count == 0
+        %p There are currently no items in the shopping cart.
+      - else
+        = form_tag update_shopping_cart_path do
+          %table.table
+            %thead
+              %tr
+                %th(width="5%") &nbsp
+                %th(width="20%") Event Name
+                %th(width="10%") Number of tickets
+                %th(width="10%") Price per ticket
+                %th(width="10%") Type of tickets
+                %th(width="10%") Subtotal
+                %th(width="15%") Remove
+            %tbody
+              - x = 0
+              - @cart_items.each do |cart_item|
+                - x += 1
+                %tr
+                  = hidden_field_tag "cart_items[][id]", cart_item.id
+                  %td= x
+                  %td
+                    %strong= cart_item.event.name
+                    %br
+                    = cart_item.event.date.strftime("%d %B %Y") + ', ' + cart_item.event.time.strftime("%H:%M")
+                    = cart_item.event.venue
+                  %td
+                    = "Balcony: $" + cart_item.event.balcony_ticket_price.to_s
+                    %br
+                    = "Floor: $" + cart_item.event.floor_ticket_price.to_s
+                  %td
+                    = select_tag "cart_items[][number_of_tickets]", options_for_select([1,2,3,4,5,6], selected: cart_item.number_of_tickets), class: "form-control"
+                  %td
+                    = select_tag "cart_items[][ticket_type]", options_for_select(["Balcony", "Floor"], selected: cart_item.ticket_type), class: "form-control"
+                  %td
+                    = "$" + cart_item.subtotal.to_s
+                  %td
+                    = link_to cart_item_path(cart_item), method: :delete do
+                      %i.glyphicon.glyphicon-remove
+              %tr
+                %td &nbsp
+                %td &nbsp
+                %td &nbsp
+                %td &nbsp
+                %td &nbsp
+                %td 
+                  Total price: 
+                  %strong= "$" + total_price(@cart_items).to_s
+                %td
+                  = submit_tag "Update", class: "btn btn-primary"
+                  = submit_tag "Checkout", class: "btn btn-success"

@@ -14,6 +14,8 @@
       - else
         %li.navbar-text Hi, #{current_user.name.titleize}!
         %li
-          %a{href: "#"} My Shopping Cart
+          = link_to cart_items_path do
+            My Shopping Cart
+            %span.badge= current_user.cart_items.count
         %li
           = link_to 'Logout', logout_path

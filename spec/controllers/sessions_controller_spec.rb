@@ -40,9 +40,7 @@ describe SessionsController do
       it "sets the error notice" do
         expect(flash[:error]).not_to be_blank
       end
-      it "redirects to the login page" do
-        expect(response).to redirect_to login_path
-      end
+      it_behaves_like "require login"
     end
   end
   
@@ -58,9 +56,7 @@ describe SessionsController do
     it "sets the logout notice" do
       expect(flash[:notice]).not_to be_blank
     end
-    it "redirects to the login page" do
-      expect(response).to redirect_to login_path
-    end
+    it_behaves_like "require login"
   end
   
 end
