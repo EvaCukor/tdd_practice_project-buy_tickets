@@ -1,5 +1,7 @@
-shared_examples "require login" do
+shared_examples "requires login" do
   it "redirects to the login page" do
-    response.should redirect_to login_path
+    session[:user_id] = nil
+    action
+    expect(response).to redirect_to login_path
   end
 end

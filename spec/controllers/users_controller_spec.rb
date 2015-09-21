@@ -14,7 +14,9 @@ describe UsersController do
       it "creates the user" do
         expect(User.count).to eq(1)
       end
-      it_behaves_like "require login"
+      it "redirects to the login page" do
+        expect(response).to redirect_to login_path
+      end
     end
     
     context "with invalid input" do

@@ -8,8 +8,7 @@ describe SessionsController do
       expect(response).to render_template :new 
     end
     it "redirects to the root page for authenticated users" do
-      user = Fabricate(:user)
-      session[:user_id] = user.id
+      set_current_user
       get :new
       expect(response).to redirect_to root_path
     end
@@ -40,14 +39,15 @@ describe SessionsController do
       it "sets the error notice" do
         expect(flash[:error]).not_to be_blank
       end
-      it_behaves_like "require login"
+      it_behaves_like "requires login" do
+        let(:action) { post :create }
+      end
     end
   end
   
   describe "GET destroy" do
     before do
-      user = Fabricate(:user)
-      session[:user_id] = user.id
+      set_current_user
       get :destroy
     end
     it "clears the session" do
@@ -56,7 +56,9 @@ describe SessionsController do
     it "sets the logout notice" do
       expect(flash[:notice]).not_to be_blank
     end
-    it_behaves_like "require login"
+    it_behaves_like "requires login" do
+        let(:action) { get :destroy }
+      end
   end
   
 end
