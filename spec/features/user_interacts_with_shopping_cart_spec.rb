@@ -26,23 +26,31 @@ feature 'user interacts with the shopping cart' do
     log_in(alice)
     visit cart_items_path
     
-    expect(find("#cart_items__number_of_tickets").value).to eq(cart_item.number_of_tickets.to_s)
-    expect(find("#cart_items__ticket_type").value).to eq(cart_item.ticket_type)
+    check_number_of_tickets(cart_item.number_of_tickets)
+    check_ticket_type(cart_item.ticket_type)
     
     within(:xpath, "//tr[contains(.,'#{event.name}')]") do
       find("option[value='3']", visible: false).select_option
     end
     find("input[value='Update']").click
     
-    expect(find("#cart_items__number_of_tickets").value).to eq("3")
-    expect(find("#cart_items__ticket_type").value).to eq(cart_item.ticket_type)
+    check_number_of_tickets(3)
+   check_ticket_type(cart_item.ticket_type)
     
     within(:xpath, "//tr[contains(.,'#{event.name}')]") do
       find("option[value='Balcony']", visible: false).select_option
     end
     find("input[value='Update']").click
     
-    expect(find("#cart_items__number_of_tickets").value).to eq("3")
-    expect(find("#cart_items__ticket_type").value).to eq("Balcony")
+    check_number_of_tickets(3)
+    check_ticket_type("Balcony")
   end
+end
+
+def check_number_of_tickets(num)
+  expect(find("#cart_items__number_of_tickets").value).to eq(num.to_s)
+end
+
+def check_ticket_type(type)
+  expect(find("#cart_items__ticket_type").value).to eq(type)
 end
