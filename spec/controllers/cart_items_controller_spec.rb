@@ -2,33 +2,23 @@ require 'spec_helper'
 
 describe CartItemsController, :type => :controller do
   describe "GET index" do
-    it_behaves_like "requires login" do
-      let(:action) { get :index }
+    context "with the user who is not logged in" do
+      it_behaves_like "requires login" do
+        let(:action) { get :index }
+      end
     end
     
     context "with the logged-in user" do
-      let(:alice) { Fabricate(:user) }
-      let(:event1) { Fabricate(:event) }
-      let(:event2) { Fabricate(:event) }
-      let(:cart_item1) { Fabricate(:cart_item, user: alice, event: event1) }
-      let(:cart_item2) { Fabricate(:cart_item, user: alice, event: event2) }
-      before do
+      it "sets @cart_items variable for the logged-in user's cart items" do
+        alice = Fabricate(:user)
+        concerts = Fabricate(:category)
+        event1 = Fabricate(:event, category: concerts)
+        event2 = Fabricate(:event, category: concerts)
+        cart_item1 = Fabricate(:cart_item, user: alice, event: event1)
+        cart_item2 = Fabricate(:cart_item, user: alice, event: event2)
         set_current_user(alice)
         get :index
-      end
-      
-      it "sets @cart_items variable for the logged-in user's cart items" do
         expect(assigns(:cart_items)).to match_array([cart_item1, cart_item2])
-      end
-      it "orders the cart items by their ids in ascending order" do
-        # alice = Fabricate(:user)
-        # event1 = Fabricate(:event)
-        # event2 = Fabricate(:event)
-        # cart_item1 = Fabricate(:cart_item, user: alice, event: event1)
-        # cart_item2 = Fabricate(:cart_item, user: alice, event: event2)
-        # set_current_user(alice)
-        # get :index
-        expect(assigns(:cart_items).first).to eq(cart_item1)
       end
     end
   end

@@ -12,6 +12,7 @@ feature 'user interacts with the shopping cart' do
     page.should have_content event.name
     page.should have_content event.balcony_ticket_price.to_s
     page.should have_content event.floor_ticket_price.to_s
+    page.should have_xpath("//span[@class='badge' and contains(., '1')]")
     
     find("a[href='/cart_items/1']").click
     page.should_not have_content event.name

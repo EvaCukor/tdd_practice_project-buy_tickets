@@ -4,7 +4,6 @@ feature 'user logs out' do
   scenario 'from events page' do
     alice = Fabricate(:user)
     log_in(alice)
-    #click_link "Events"
     logout
   end
   
