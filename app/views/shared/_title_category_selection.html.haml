@@ -8,8 +8,6 @@
           %span.caret
         %ul{:class => "dropdown-menu", "aria-labelledby" => "dropdownMenuDivider"}
           - @categories.each do |category|
-            %li 
-              = link_to category.name.titleize, category_path(category)
+            %li= link_to category.name.titleize, category_path(category)
           %li{:role => "separator", :class => "divider"}
-          %li
-            = link_to "All events", root_path
+          %li= link_to "All events", root_path

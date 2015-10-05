@@ -26,7 +26,7 @@
                   = hidden_field_tag "cart_items[][id]", cart_item.id
                   %td= x
                   %td
-                    %strong= cart_item.event.name
+                    %strong= link_to cart_item.event.name, event_path(cart_item.event)
                     %br
                     = cart_item.event.date.strftime("%d %B %Y") + ', ' + cart_item.event.time.strftime("%H:%M")
                     = cart_item.event.venue

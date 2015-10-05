@@ -7,15 +7,12 @@
         = link_to 'Events', root_path
     %ul.nav.navbar-nav.navbar-right
       - if !current_user
-        %li
-          = link_to 'Login', login_path
-        %li
-          = link_to 'Register', register_path
+        %li= link_to 'Login', login_path
+        %li= link_to 'Register', register_path
       - else
         %li.navbar-text Hi, #{current_user.name.titleize}!
         %li
           = link_to cart_items_path do
             My Shopping Cart
             %span.badge= current_user.cart_items.count
-        %li
-          = link_to 'Logout', logout_path
+        %li= link_to 'Logout', logout_path

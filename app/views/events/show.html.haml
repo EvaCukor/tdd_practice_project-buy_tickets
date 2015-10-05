@@ -1,7 +1,8 @@
 %div.container
   %div.row
     %div.col-lg-12
-      %h1.page-header= @event.name
+      %h1.page-header
+        = @event.name
   %div.row
     %div.col-lg-7
       = image_tag("/tmp/#{@event.img_url}", class: "img-responsive")
@@ -10,7 +11,7 @@
       %h4= @event.venue
       %h4= @event.category.name.capitalize.singularize
       %p= @event.description
-      - unless current_user.added_event_to_cart?(@event)
+      - if current_user && !current_user.added_event_to_cart?(@event)
         = link_to cart_items_path(event_id: @event.id), class: "btn btn-success", method: :post  do
           Add to cart&nbsp;
           %span.glyphicon.glyphicon-shopping-cart
