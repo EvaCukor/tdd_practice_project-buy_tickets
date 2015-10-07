@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CartItemsController, :type => :controller do
   describe "GET index" do
-    context "with the user who is not logged in" do
+    context "with the user who is  logged in" do
       it_behaves_like "requires login" do
         let(:action) { get :index }
       end
@@ -28,7 +28,7 @@ describe CartItemsController, :type => :controller do
       let(:action) { post :create, event_id: 1 }
     end
     
-    context "with the cart item that is not yet in the shopping cart" do
+    context "with the cart item that is  yet in the shopping cart" do
       let(:alice) { Fabricate(:user) }
       let(:event) { Fabricate(:event) }
       before do
@@ -51,7 +51,7 @@ describe CartItemsController, :type => :controller do
     end
     
     context "with the cart item that is already in the shopping cart" do
-      it "does not create a cart item" do
+      it "does  create a cart item" do
         alice = Fabricate(:user)
         set_current_user(alice)
         event = Fabricate(:event)
@@ -75,7 +75,7 @@ describe CartItemsController, :type => :controller do
     it "redirects to the shopping cart page" do
       expect(response).to redirect_to cart_items_path
     end
-    it "does not delete the item if it is not in the shopping cart" do
+    it "does  delete the item if it is  in the shopping cart" do
       expect(response).to redirect_to cart_items_path
     end
     it_behaves_like "requires login" do
@@ -97,7 +97,7 @@ describe CartItemsController, :type => :controller do
       before { set_current_user(alice) }
       
       it "redirects to the shopping cart page" do
-        post :update_shopping_cart, commit: "Update", cart_items: [{id: cart_item1.id, number_of_tickets: 3}, {id: cart_item2.id, ticket_type: "Floor", number_of_tickets: cart_item2.number_of_tickets}]
+        post :update_shopping_cart, commit: "Update", cart_items: [{id: cart_item1.id, number_of_tickets: 4, ticket_type: "Balcony"}, {id: cart_item2.id, number_of_tickets: 2, ticket_type: "Floor"}]
         expect(response).to redirect_to cart_items_path
       end
       
@@ -107,8 +107,8 @@ describe CartItemsController, :type => :controller do
       end
     end
     
-    context "with cart items that do not belong to the current user" do
-      it "does not update the item if it does not belong to the logged-in user" do
+    context "with cart items that do  belong to the current user" do
+      it "does  update the item if it does  belong to the logged-in user" do
         alice = Fabricate(:user)
         set_current_user(alice)
         bob = Fabricate(:user)

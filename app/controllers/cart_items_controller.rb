@@ -23,11 +23,7 @@ class CartItemsController < ApplicationController
         params[:cart_items].each do |cart_item_data|
           cart_item = CartItem.find(cart_item_data["id"])
           if cart_item.user == current_user
-            if cart_item_data["ticket_type"] == "Balcony"
-              cart_item.update!(number_of_tickets: cart_item_data["number_of_tickets"], ticket_type: cart_item_data["ticket_type"], ticket_price: cart_item.event.balcony_ticket_price)
-            elsif cart_item_data["ticket_type"] == "Floor"
-              cart_item.update!(number_of_tickets: cart_item_data["number_of_tickets"], ticket_type: cart_item_data["ticket_type"], ticket_price: cart_item.event.floor_ticket_price)
-            end
+            cart_item.update!(number_of_tickets: cart_item_data["number_of_tickets"], ticket_type: cart_item_data["ticket_type"], ticket_price: define_ticket_price(cart_item, cart_item_data["ticket_type"]))
           end
         end
       end
@@ -38,12 +34,16 @@ class CartItemsController < ApplicationController
   private
   
   def add_event_to_cart(event)
-    unless current_user_added_event_to_cart?(event)
+    unless current_user.added_event_to_cart?(event)
       CartItem.create(event: event, user: current_user, number_of_tickets: 1, ticket_type: "Balcony", ticket_price: event.balcony_ticket_price)
     end
   end
   
-  def current_user_added_event_to_cart?(event)
-    current_user.cart_items.map(&:event).include?(event)
+  def define_ticket_price(cart_item, ticket_type)
+    if ticket_type == "Balcony"
+      cart_item.event.balcony_ticket_price
+    elsif ticket_type == "Floor"
+      cart_item.event.floor_ticket_price
+    end
   end
 end

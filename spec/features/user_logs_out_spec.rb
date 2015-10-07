@@ -4,7 +4,7 @@ feature 'user logs out' do
   scenario 'from events page' do
     alice = Fabricate(:user)
     log_in(alice)
-    logout
+    logout_and_test_login_page
   end
   
   scenario 'from category page' do
@@ -12,7 +12,7 @@ feature 'user logs out' do
     concerts = Fabricate(:category)
     log_in(alice)
     visit category_path(concerts)
-    logout
+    logout_and_test_login_page
   end
   
   scenario 'from individual event page' do
@@ -21,13 +21,13 @@ feature 'user logs out' do
     event = Fabricate(:event, category: category)
     log_in(alice)
     visit event_path(event)
-    logout
+    logout_and_test_login_page
   end
   
   scenario 'from the shopping cart' do
     alice = Fabricate(:user)
     log_in(alice)
     click_link "My Shopping Cart"
-    logout
+    logout_and_test_login_page
   end
 end

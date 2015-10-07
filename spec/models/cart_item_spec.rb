@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe CartItem do
-  it { should belong_to(:user) }
-  it { should belong_to(:event) }
-  it { should validate_presence_of(:number_of_tickets) }
-  it { should validate_presence_of(:ticket_type) }
-  it { should validate_presence_of(:ticket_price) }
+  it { is_expected.to belong_to(:user) }
+  it { is_expected.to belong_to(:event) }
+  it { is_expected.to validate_presence_of(:number_of_tickets) }
+  it { is_expected.to validate_presence_of(:ticket_type) }
+  it { is_expected.to validate_presence_of(:ticket_price) }
   
   describe "#subtotal" do
     it "returns the product of the number of tickets and the ticket price" do

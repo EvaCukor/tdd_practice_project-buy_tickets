@@ -1,5 +1,5 @@
 def set_current_user(user=nil)
-  session[:user_id] = (user || Fabricate(:user)).id
+  session[:user_id] ||= (user || Fabricate(:user)).id
 end
 
 def log_in(a_user=nil)
@@ -13,8 +13,8 @@ def log_in(a_user=nil)
   click_button "Log in"
 end
 
-def logout
+def logout_and_test_login_page
   click_link "Logout"
-  page.should have_content "You have logged out."
-  page.should have_xpath("//h1[contains(., 'Login')]")
+  expect(page).to have_content "You have logged out."
+  expect(page).to have_xpath("//h1[contains(., 'Login')]")
 end
